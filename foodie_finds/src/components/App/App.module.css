@@ -1,0 +1,45 @@
+/* Universal Styles */
+
+html {
+  font-size: 18px;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+@media only screen and (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+input:focus {
+  outline: none;
+}
+
+/* App Styles */
+
+.App {
+  font-family: "Work Sans", sans-serif;
+}
+
+.App h1 {
+  padding: 0.66rem 0;
+  text-align: center;
+  background-color: #4CAF50;
+  font-family: Poppins, sans-serif;
+  font-size: 1.8rem;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* 
+GREEN = #4CAF50
+WHITE = #FFFFFF
+ORANGE = #FF9800
+DARK GREEN = #388E3C
+DARK GREY = #333333
+BLACK = #000000
+*/
