@@ -1,4 +1,4 @@
-import { upvoteIcon, downvoteIcon } from "../ui/vote";
+import { upvoteIcon, downvoteIcon } from "../ui/icons";
 
 const style = {
     vote: "flex flex-col items-center space-y-1",

@@ -2,7 +2,7 @@ import Post from '@/components/feed/post-preview';
 import demoPosts from '@/lib/demoData';
 
 const style = {
-  wrapper: 'container mx-auto px-4 pt-8 space-y-2.5',
+  wrapper: 'container mx-auto px-4 mt-8 mb-12 space-y-2.5',
 };
 
 export default function Home() {
