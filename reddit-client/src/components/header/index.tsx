@@ -1,11 +1,11 @@
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import { AvatarIcon } from '@radix-ui/react-icons';
+import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
 import { Button } from '../ui/button';
 
 const styles = {
-  header: 'fixed inset-x-0 top-0 z-50 bg-[#1a1a1b]',
-  wrapper: 'flex items-center justify-between border-b space-x-4 border-[#343536] px-4 py-4 max-w-full',
+  header: 'fixed inset-x-0 top-0 z-50 bg-popover',
+  wrapper: 'flex items-center justify-between border-b space-x-4 border-muted px-4 py-4 max-w-full',
 };
 
 export default function Header() {
@@ -15,9 +15,13 @@ export default function Header() {
         <div className={styles.wrapper}>
           <Logo />
           <SearchBar />
+          {/* Future Todo: Add other features here */}
           <div className='flex items-center space-x-4'>
-            <AvatarIcon className='w-6 h-6 text-gray-500 hover:text-gray-300' />
-            <button className='rounded border border-gray-300 px-3 py-1 text-center text-sm font-semibold'>Log Out</button>
+            <Avatar>
+              <AvatarImage src='https://github.com/profile.png' alt='avatar' />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <Button variant='destructive'>Log Out</Button>
           </div>
         </div>
       </div>

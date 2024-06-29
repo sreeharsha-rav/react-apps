@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const styles = {
     wrapper: `flex items-center`,
     icon: `w-8 h-8 mx-2`,
@@ -7,7 +9,13 @@ const styles = {
 const Logo = () => {
     return (
         <div className={styles.wrapper}>
-            <img src="/reddit-icon.png" alt="Reddit Icon" className={styles.icon} />
+            <Image 
+                src="/reddit-icon.png" 
+                alt="Reddit Icon" 
+                width={32}
+                height={32}
+                className={styles.icon}
+            />
             <h1 className={styles.title}>Reddit Client</h1>
         </div>
     );
