@@ -33,7 +33,6 @@ const getTimeAgo = (createdAt: number) => {
 }
 
 const Info = ({ subreddit, author, createdAt }: InfoProps) => {
-    console.log(subreddit, author, createdAt);
     return (
         <div className={style.wrapper}>
             <div className={style.profilePicContainer}>

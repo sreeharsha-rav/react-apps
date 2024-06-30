@@ -14,46 +14,56 @@ const styles = {
   createdAt: 'text-sm font-light',
 };
 
-const About = () => {
+interface InfoProps {
+    name: string;
+    title: string;
+    description: string;
+    subscribers: number;
+    activeUsers: number;
+    profilePic: string;
+    createdAt: string;
+    isOver18: boolean;
+}
+
+const Info = ({ name, title, description, subscribers, activeUsers, profilePic, createdAt, isOver18 }: InfoProps) => {
     return (
         <div className={styles.wrapper}>
             <div className='pb-2'>
                 <div className={styles.profileInfoContainer}>
                 <div className={styles.profilePicContainer}>
                     <Image
-                        src='/subreddit-logo.jpg'
+                        src={profilePic}
                         layout='fill'
                         className={styles.profilePic}
                         alt='Profile Image'
                     />
                 </div>
-                <p>r/ProgrammerHumor</p>
+                <p>r/{name}</p>
                 </div>
-                <p className={styles.aboutContent}>
-                memes And Jokes About Everything 
-                Programming And CS
-                For anything funny related to programming and 
-                software development.
-                </p>
+                <p className={styles.aboutContent}>{description}</p>
 
                 <div className={styles.statsWrapper}>
                 <div className={styles.stat}>
-                    <span>3.7m</span>
+                    <span>{subscribers}</span>
                     <span className={styles.statTitle}>Members</span>
                 </div>
                 <div className={styles.stat}>
-                    <span>446</span>
+                    <span>{activeUsers}</span>
                     <span className={styles.statTitle}>Online</span>
                 </div>
                 </div>
             </div>
 
             <div className={styles.footer}>
-                <p className={styles.createdAt}>Created Jan 31, 2021</p>
+                <p className={styles.createdAt}>
+                    Created {createdAt}
+                    <br />
+                    {isOver18 && <span>NSFW</span>} 
+                </p>
                 <Button variant='secondary'>Joined</Button>
             </div>
             </div>
     );
 }
 
-export default About;
+export default Info;

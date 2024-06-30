@@ -6,7 +6,7 @@ type SubredditAbout = {
     active_users: number;
     icon_url: string;
     banner_url: string;
-    creation_date: string;
+    creation_date: number;
     is_over_18: boolean;
 }
 

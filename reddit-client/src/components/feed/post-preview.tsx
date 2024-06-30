@@ -18,9 +18,9 @@ interface PostProps {
 };
 
 const style = {
-    post: 'flex flex-col space-y-1 cursor-pointer',
-    wrapper: 'flex space-x-3 rounded bg-card p-2 border hover:shadow-md transition duration-200 ease-in-out',
-    title: 'text-2xl font-semibold',
+    post: 'flex flex-wrap flex-col justify-center align-middle cursor-pointer',
+    wrapper: 'flex space-x-3 rounded bg-card p-2 border hover:bg-muted',
+    title: 'text-2xl font-semibold overflow-ellipsis overflow-hidden whitespace-nowrap hover:underline',
     content: 'p-3 flex justify-center items-center align-middle',
     image: 'rounded-lg overflow-hidden',
 };
@@ -33,10 +33,9 @@ const PostImage = ({ imageUrl }: { imageUrl: string }) => {
             <Image
                 src={imageUrl}
                 alt="Post Image"
-                width={100}
-                height={100}
-                objectFit='cover'
-                layout='responsive'
+                width={500}
+                height={500}
+                objectFit='fill'
             />
         </div>
     );

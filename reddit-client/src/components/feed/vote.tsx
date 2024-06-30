@@ -2,7 +2,7 @@ import { upvoteIcon, downvoteIcon } from "../ui/icons";
 
 const style = {
     vote: "flex flex-col items-center space-y-1",
-    button: "flex items-center justify-center w-8 h-8 p-1 text-xs text-sky-400 hover:text-blue-300 active: text-blue",
+    button: "flex items-center justify-center w-8 h-8 p-1 text-xs text-sky-400 hover:text-blue-700 hover:bg-blue-50 rounded-full",
     count: "text-xs font-semibold",
 };
 

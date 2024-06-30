@@ -1,7 +1,6 @@
-import Banner from '@/components/community/banner';
-import Feed from '@/components/feed/index';
 import Header from '@/components/header/index';
-import About from '@/components/community/about';
+import { ViewBanner, ViewInfo } from '@/components/community/index';
+import Feed from '@/components/feed/index';
 
 const style = {
   main: `mx-auto flex w-full max-w-5xl flex-1 space-x-6 py-5 px-6`,
@@ -9,17 +8,18 @@ const style = {
   infoContainer: `hidden w-1/3 lg:block`,
 };
 
+
 export default function Home() {
   return (
     <>
       <Header />
-      <Banner />
+      <ViewBanner />
       <main className={style.main}>
         <div className={style.content}>
           <Feed />
         </div>
         <div className={style.infoContainer}>
-          <About />
+          <ViewInfo />
         </div>
       </main>
     </>

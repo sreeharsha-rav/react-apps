@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 
 const styles = {
     wrapper: 'mt-14 flex flex-col',
-    bannerImage: 'h-48 relative',
+    bannerImage: 'h-20 relative',
     bannerContentWrapper: 'flex items-center justify-between w-full mx-auto px-10 py-1 border-b',
     profileInfoWrapper: 'flex items-start space-x-4 pb-3',
     profilePicWrapper: `-mt-10 h-20 w-20 relative`,
@@ -16,15 +16,23 @@ const styles = {
       'cursor-pointer rounded-full border border-gray-300 px-[1.6rem] py-1 text-center text-sm font-semibold',
 };
 
-export default function Banner() {
+// TODO: Make the banner image dynamic
+interface BannerProps {
+    bannerImage: string;
+    profilePic: string;
+    name: string;
+    title: string;
+}
+
+export default function Banner({ bannerImage, profilePic, name, title }: BannerProps) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.bannerImage}>
                 <Image
-                src='/subreddit-banner.jpg'
-                layout='fill'
-                className='object-cover'
-                alt=''
+                    src={bannerImage}
+                    layout='fill'
+                    className='object-cover'
+                    alt='Banner Image'
                 />
             </div>
             <div className={styles.bannerContentWrapper}>
@@ -33,14 +41,14 @@ export default function Banner() {
                     <div className={styles.profilePicWrapper}>
                         <Image
                             className={styles.profilePic}
-                            src='/subreddit-logo.jpg'
+                            src={profilePic}
                             layout='fill'
                             alt=''
                         />
                     </div>
                     <div>
-                        <h1 className={styles.title}>ProgrammerHumor</h1>
-                        <h2 className={styles.tag}>r/ProgrammerHumor</h2>
+                        <h1 className={styles.title}>{title}</h1>
+                        <h2 className={styles.tag}>r/{name}</h2>
                     </div>
                 </div>
                 {/* Actions - Create Post, Join */}
