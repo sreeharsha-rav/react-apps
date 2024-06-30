@@ -24,6 +24,7 @@ type SubredditPost = {
     downs: number;
     num_comments: number;
     created_utc: number;
+    selftext: string;
     url: string;
     permalink: string;
 }

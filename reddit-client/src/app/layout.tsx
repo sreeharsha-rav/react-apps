@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import Head from "next/head";
+import Header from "@/components/header";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={cn(styles.wrapper, fontSans.variable)}>
+        <Header />
         {children}
       </body>
     </html>

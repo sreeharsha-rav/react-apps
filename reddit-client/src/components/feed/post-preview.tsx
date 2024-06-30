@@ -14,14 +14,16 @@ interface PostProps {
     downs: number;
     numComments: number;
     createdAt: any;
+    selftext: string;
     permalink: string;
 };
 
 const style = {
     post: 'flex flex-wrap flex-col justify-center align-middle cursor-pointer',
     wrapper: 'flex space-x-3 rounded bg-card p-2 border hover:bg-muted',
-    title: 'text-2xl font-semibold overflow-ellipsis overflow-hidden whitespace-nowrap hover:underline',
+    title: 'p-2 flex flex-wrap text-2xl font-semibold',
     content: 'p-3 flex justify-center items-center align-middle',
+    description: 'text-sm text-muted-foreground max-h-20 text-ellipsis overflow-hidden',
     image: 'rounded-lg overflow-hidden',
 };
 
@@ -51,7 +53,8 @@ const Post: React.FC<PostProps> = (
         ups,
         downs, 
         numComments, 
-        createdAt, 
+        createdAt,
+        selftext,
         permalink 
     }: PostProps
 ) => {
@@ -70,6 +73,9 @@ const Post: React.FC<PostProps> = (
                 />
                 <h1 className={style.title}>{title}</h1>
                 <div className={style.content}>
+                    <p className={style.description}>
+                        {selftext}
+                    </p>
                     {isImage && <PostImage imageUrl={imageUrl} />}
                 </div>
                 <Actions numComments={numComments}/>

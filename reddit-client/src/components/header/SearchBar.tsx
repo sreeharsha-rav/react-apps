@@ -10,7 +10,7 @@ const SearchBar = () => {
     return (
         <div className={styles.wrapper}>
             <MagnifyingGlassIcon className={styles.search} />
-            <input className={styles.input} type='text' placeholder='Search Subreddit' />
+            <input className={styles.input} type='text' placeholder='Search ...' />
         </div>
     );
 };

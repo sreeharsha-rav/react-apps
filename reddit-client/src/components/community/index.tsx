@@ -3,9 +3,6 @@ import Info from "./info";
 import { getSubredditAbout } from "@/lib/data";
 import { SubredditAbout } from "@/lib/definition";
 
-// TODO: Gather information about the subreddit through the API and pass it to the Banner and About components
-
-
 async function ViewBanner(): Promise<JSX.Element> {
     "use server";
 

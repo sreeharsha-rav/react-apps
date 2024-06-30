@@ -1,12 +1,12 @@
 import { SubredditAbout, SubredditAboutResponse, SubredditPost, SubredditPostResponse } from "./definition";
 
-const apiURL = "https://www.reddit.com/r/ProgrammerHumor";
+const apiURL = "https://www.reddit.com/r/";
 
 // Get subreddit about information from the API
-export async function getSubredditAbout(): Promise<SubredditAbout> {
+export async function getSubredditAbout({subreddit}: {subreddit: string}): Promise<SubredditAbout> {
     try {
         // Fetch subreddit about information from the API
-        const response = await fetch(`${apiURL}/about.json`, {
+        const response = await fetch(`${apiURL}/${subreddit}/about.json`, {
             next: {
                 revalidate: 60
             }
@@ -19,17 +19,17 @@ export async function getSubredditAbout(): Promise<SubredditAbout> {
         }
 
         // Convert the data to a JSON object and return it
-        const subreddit = data.data;
+        const subredditData = data.data;
         const about: SubredditAbout = {
-            name: subreddit.display_name,
-            title: subreddit.title,
-            description: subreddit.public_description,
-            subscribers: subreddit.subscribers,
-            active_users: subreddit.active_user_count,
-            icon_url: subreddit.icon_img,
-            banner_url: subreddit.banner_background_image,
-            creation_date: subreddit.created_utc,
-            is_over_18: subreddit.over18
+            name: subredditData.display_name,
+            title: subredditData.title,
+            description: subredditData.public_description,
+            subscribers: subredditData.subscribers,
+            active_users: subredditData.active_user_count,
+            icon_url: subredditData.icon_img,
+            banner_url: subredditData.banner_background_image,
+            creation_date: subredditData.created_utc,
+            is_over_18: subredditData.over18
         };
         
         return about;
@@ -39,11 +39,47 @@ export async function getSubredditAbout(): Promise<SubredditAbout> {
     }
 }
 
+// Get posts standard from the API
+export async function getPosts({subreddit}: {subreddit: string}): Promise<SubredditPost[]> {
+    try {
+        // Fetch posts from the API
+        const response = await fetch(`${apiURL}/${subreddit}.json`, {
+            next: {
+                revalidate: 60
+            }
+        });
+        const data: SubredditPostResponse = await response.json();
+
+        // Convert the data to a JSON object and return it
+    const posts: SubredditPost[] = data.data.children.map(child => {
+        const post = child.data;
+        return {
+            title: post.title,
+            author: post.author,
+            subreddit: post.subreddit,
+            score: post.score,
+            ups: post.ups,
+            downs: post.downs,
+            num_comments: post.num_comments,
+            created_utc: post.created_utc,
+            selftext: post.selftext,
+            url: post.url,
+            permalink: post.permalink
+        };
+    });
+
+    return posts;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
 // Get new posts from the API
-export async function getNewPosts(): Promise<SubredditPost[]> {
+export async function getNewPosts({subreddit}: {subreddit: string}): Promise<SubredditPost[]> {
   try {
     // Fetch new posts from the API
-    const response = await fetch(`${apiURL}/new.json`, {
+    const response = await fetch(`${apiURL}/${subreddit}/new.json`, {
         next: {
             revalidate: 60
         }
@@ -62,6 +98,7 @@ export async function getNewPosts(): Promise<SubredditPost[]> {
             downs: post.downs,
             num_comments: post.num_comments,
             created_utc: post.created_utc,
+            selftext: post.selftext,
             url: post.url,
             permalink: post.permalink
         };
@@ -75,10 +112,10 @@ export async function getNewPosts(): Promise<SubredditPost[]> {
 }
 
 // Get hot posts from the API
-export async function getHotPosts(): Promise<SubredditPost[]> {
+export async function getHotPosts({subreddit}: {subreddit: string}): Promise<SubredditPost[]> {
     try {
         // Fetch hot posts from the API
-        const response = await fetch(`${apiURL}/hot.json`, {
+        const response = await fetch(`${apiURL}/${subreddit}/hot.json`, {
             next: {
                 revalidate: 60
             }
@@ -97,6 +134,7 @@ export async function getHotPosts(): Promise<SubredditPost[]> {
                 downs: post.downs,
                 num_comments: post.num_comments,
                 created_utc: post.created_utc,
+                selftext: post.selftext,
                 url: post.url,
                 permalink: post.permalink
             };
@@ -110,10 +148,10 @@ export async function getHotPosts(): Promise<SubredditPost[]> {
 }
 
 // Get top posts from the API
-export async function getTopPosts(): Promise<SubredditPost[]> {
+export async function getTopPosts({subreddit}: {subreddit: string}): Promise<SubredditPost[]> {
     try {
         // Fetch top posts from the API
-        const response = await fetch(`${apiURL}/top.json`, {
+        const response = await fetch(`${apiURL}/${subreddit}/top.json`, {
             next: {
                 revalidate: 60
             }
@@ -132,6 +170,7 @@ export async function getTopPosts(): Promise<SubredditPost[]> {
                 downs: post.downs,
                 num_comments: post.num_comments,
                 created_utc: post.created_utc,
+                selftext: post.selftext,
                 url: post.url,
                 permalink: post.permalink
             };
