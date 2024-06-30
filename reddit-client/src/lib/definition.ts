@@ -20,6 +20,8 @@ type SubredditPost = {
     author: string;
     subreddit: string;
     score: number;
+    ups: number;
+    downs: number;
     num_comments: number;
     created_utc: number;
     url: string;

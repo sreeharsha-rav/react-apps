@@ -9,6 +9,9 @@ interface PostProps {
     title: string;
     author: string;
     imageUrl: string;
+    score: number;
+    ups: number;
+    downs: number;
     numComments: number;
     createdAt: any;
     permalink: string;
@@ -44,7 +47,10 @@ const Post: React.FC<PostProps> = (
         subreddit, 
         title, 
         author, 
-        imageUrl, 
+        imageUrl,
+        score,
+        ups,
+        downs, 
         numComments, 
         createdAt, 
         permalink 
@@ -56,7 +62,7 @@ const Post: React.FC<PostProps> = (
 
     return (
         <div className={style.wrapper}>
-            <Vote />
+            <Vote upvotes={ups} downvotes={downs} score={score} />
             <div className={style.post}>
                 <Info 
                     subreddit={subreddit} 

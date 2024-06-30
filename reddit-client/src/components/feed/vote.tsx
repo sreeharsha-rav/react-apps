@@ -6,16 +6,16 @@ const style = {
     count: "text-xs font-semibold",
 };
 
-export default function Vote() {
-    const upvotes = 10;
-    const downvotes = 5;
+export default function Vote({ upvotes, downvotes, score }: { upvotes: number, downvotes: number, score: number }) {
+    
+    // TODO: State management for upvotes and downvotes, and update the score accordingly
 
     return (
         <div className={style.vote}>
             <button className={style.button}>
                 {upvoteIcon()}
             </button>
-            <span className={style.count}>{upvotes - downvotes}</span>
+            <span className={style.count}>{score}</span>
             <button className={style.button}>
                 {downvoteIcon()}
             </button>

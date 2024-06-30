@@ -20,6 +20,9 @@ const Feed = async () => {
             title={post.title} 
             author={post.author}
             imageUrl={post.url}
+            score={post.score}
+            ups={post.ups}
+            downs={post.downs}
             numComments={post.num_comments}
             createdAt={post.created_utc}
             permalink={post.permalink}
