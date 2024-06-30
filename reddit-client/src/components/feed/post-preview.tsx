@@ -5,56 +5,69 @@ import Info from './info';
 import Image from 'next/image';
 
 interface PostProps {
+    subreddit: any;
     title: string;
     author: string;
-    content: string;
+    imageUrl: string;
+    numComments: number;
+    createdAt: any;
+    permalink: string;
 };
 
 const style = {
     post: 'flex flex-col space-y-1 cursor-pointer',
     wrapper: 'flex space-x-3 rounded bg-card p-2 border hover:shadow-md transition duration-200 ease-in-out',
-    title: 'text-lg font-semibold',
-    content: 'text-sm text-muted-foreground',
+    title: 'text-2xl font-semibold',
+    content: 'p-3 flex justify-center items-center align-middle',
+    image: 'rounded-lg overflow-hidden',
 };
 
-/*
-* Post Component
-* 
-* Features within the Post component:
-* - Voting system:
-*   - Upvote
-*   - Downvote
-*   - Vote count
-* - Actions:
-*   - Comments
-* - Info:
-*  - Author
-*  - Date
-*  - Time
-* - Content
-*   - Title
-*   - Description
-*   - Image
-*/
-const Post: React.FC<PostProps> = ({ title, author, content }) => {
+// TODO: How to center the image in the post content?
+
+const PostImage = ({ imageUrl }: { imageUrl: string }) => {
+    return (
+        <div className={style.image}>
+            <Image
+                src={imageUrl}
+                alt="Post Image"
+                width={100}
+                height={100}
+                objectFit='cover'
+                layout='responsive'
+            />
+        </div>
+    );
+}
+
+const Post: React.FC<PostProps> = (
+    { 
+        subreddit, 
+        title, 
+        author, 
+        imageUrl, 
+        numComments, 
+        createdAt, 
+        permalink 
+    }: PostProps
+) => {
+
+    // Check if the image URL contains a valid image extension
+    const isImage = (imageUrl.match(/\.(jpeg|jpg|gif|png)$/) != null);
+
     return (
         <div className={style.wrapper}>
             <Vote />
             <div className={style.post}>
-                <Info author={author}/>
+                <Info 
+                    subreddit={subreddit} 
+                    author={author} 
+                    createdAt={createdAt}
+                />
                 <h1 className={style.title}>{title}</h1>
                 <div className={style.content}>
-                    <p>{content}</p>
+                    {isImage && <PostImage imageUrl={imageUrl} />}
                 </div>
-                <Image
-                    src="https://picsum.photos/200"
-                    alt="Post Image"
-                    width={100}
-                    height={100}
-                    objectFit='cover'
-                    className='w-full h-48 rounded-md'
-                />
-                <Actions />
+                <Actions numComments={numComments}/>
             </div>
         </div>
     );

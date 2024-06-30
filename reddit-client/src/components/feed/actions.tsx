@@ -6,7 +6,7 @@ const style = {
     wrapper: 'flex items-center space-x-3 pt-2',
 }
 
-const Actions = () => {
+const Actions = ({ numComments }: { numComments: number }) => {
     return (
         <div className={style.wrapper}>
             <div className={style.iconContainer}>

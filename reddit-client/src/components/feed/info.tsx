@@ -6,7 +6,34 @@ const style = {
     postedBy: 'flex items-center space-x-1',
 }
 
-const Info = ({ author } : any) => {
+interface InfoProps {
+    subreddit: any;
+    author: string;
+    createdAt: number;
+}
+
+// Function to convert UTC time to time ago
+const getTimeAgo = (createdAt: number) => {
+    // Get current time set in seconds
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    // Calculate the difference between the current time and the time the post was created
+    const timeDifference = currentTime - createdAt;
+
+    // Calculate the time ago
+    const seconds = timeDifference;
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (days > 0) return `${days} days ago`;
+    if (hours > 0) return `${hours} hours ago`;
+    if (minutes > 0) return `${minutes} minutes ago`;
+    if (seconds > 0) return `${seconds} seconds ago`;
+}
+
+const Info = ({ subreddit, author, createdAt }: InfoProps) => {
+    console.log(subreddit, author, createdAt);
     return (
         <div className={style.wrapper}>
             <div className={style.profilePicContainer}>
@@ -16,7 +43,7 @@ const Info = ({ author } : any) => {
                 />
             </div>
 
-            <div className={style.tag}>u/test</div>
+            <div className={style.tag}>r/{subreddit}</div>
 
             <div>•</div>
 
@@ -24,7 +51,7 @@ const Info = ({ author } : any) => {
 
             <div>•</div>
 
-            <span>1 hour ago</span>
+            <span>{getTimeAgo(createdAt)}</span>
         </div>
     );
 }
