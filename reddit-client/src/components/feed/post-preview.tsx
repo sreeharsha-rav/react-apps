@@ -22,8 +22,8 @@ const style = {
     post: 'flex flex-wrap flex-col justify-center align-middle cursor-pointer',
     wrapper: 'flex space-x-3 rounded bg-card p-2 border hover:bg-muted',
     title: 'p-2 flex flex-wrap text-2xl font-semibold',
-    content: 'p-3 flex justify-center items-center align-middle',
-    description: 'text-sm text-muted-foreground max-h-20 text-ellipsis overflow-hidden',
+    content: 'p-3 flex flex-col space-y-2 justify-center items-center align-middle',
+    description: '-mt-2 text-sm text-muted-foreground max-h-20 text-ellipsis overflow-hidden',
     image: 'rounded-lg overflow-hidden',
 };
 

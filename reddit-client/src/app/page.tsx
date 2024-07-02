@@ -1,4 +1,4 @@
-import HomeFeed from "@/components/feed";
+import Feed from '@/components/feed';
 
 const styles = {
   main: `mx-auto flex w-full max-w-5xl flex-1 space-x-6 py-5 px-6 items-center justify-center`,
@@ -16,7 +16,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.content}>
-          <HomeFeed />
+          <Feed subreddit='popular' />
         </div>
       </main>
     </>

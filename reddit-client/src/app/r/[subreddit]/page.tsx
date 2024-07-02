@@ -8,16 +8,17 @@ const style = {
 };
 
 
-export default function SubredditHome() {
+export default function SubredditHome({ params }: { params: { subreddit: string }}) {
+  
   return (
-    <>
-      <ViewBanner />
+    <> 
+      <ViewBanner subreddit={params.subreddit} />
       <main className={style.main}>
         <div className={style.content}>
-          <Feed />
+          <Feed subreddit={params.subreddit} />
         </div>
         <div className={style.infoContainer}>
-          <ViewInfo />
+          <ViewInfo subreddit={params.subreddit} />
         </div>
       </main>
     </>

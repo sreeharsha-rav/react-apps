@@ -28,12 +28,15 @@ export default function Banner({ bannerImage, profilePic, name, title }: BannerP
     return (
         <div className={styles.wrapper}>
             <div className={styles.bannerImage}>
-                <Image
-                    src={bannerImage}
-                    layout='fill'
-                    className='object-cover'
-                    alt='Banner Image'
-                />
+                {bannerImage ? (
+                    <Image
+                        src={bannerImage}
+                        layout='fill'
+                        className='object-cover filter blur-sm'
+                        alt='Banner Image'
+                    />
+                ) : 
+                    <div className='bg-[#343536] w-full h-full'></div>}
             </div>
             <div className={styles.bannerContentWrapper}>
                 {/* Info about Subreddit */}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const style = {
     wrapper: 'flex items-center space-x-1 text-xs text-gray-500',
     profilePic: 'h-4 w-4 rounded-full',
@@ -42,7 +44,11 @@ const Info = ({ subreddit, author, createdAt }: InfoProps) => {
                 />
             </div>
 
-            <div className={style.tag}>r/{subreddit}</div>
+            <div className={style.tag}>
+                <Link href={`/r/${subreddit}`}>
+                    r/{subreddit}
+                </Link>
+            </div>
 
             <div>•</div>
 

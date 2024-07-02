@@ -3,10 +3,10 @@ import Info from "./info";
 import { getSubredditAbout } from "@/lib/data";
 import { SubredditAbout } from "@/lib/definition";
 
-async function ViewBanner(): Promise<JSX.Element> {
+async function ViewBanner({subreddit}: {subreddit: string}): Promise<JSX.Element> {
     "use server";
 
-    const about: SubredditAbout = await getSubredditAbout();
+    const about: SubredditAbout = await getSubredditAbout({subreddit});
     const bannerProps = {
         bannerImage: about.banner_url,
         profilePic: about.icon_url,
@@ -17,10 +17,10 @@ async function ViewBanner(): Promise<JSX.Element> {
     return <Banner {...bannerProps} />;
 };
 
-async function ViewInfo(): Promise<JSX.Element> {
+async function ViewInfo({subreddit}: {subreddit: string}): Promise<JSX.Element> {
     "use server";
 
-    const about: SubredditAbout = await getSubredditAbout();
+    const about: SubredditAbout = await getSubredditAbout({subreddit});
     const infoProps = {
         name: about.name,
         title: about.title,
@@ -32,8 +32,8 @@ async function ViewInfo(): Promise<JSX.Element> {
         isOver18: about.is_over_18,
     };
 
-
     return <Info {...infoProps} />;
+    
 };
 
 export { ViewBanner, ViewInfo };
