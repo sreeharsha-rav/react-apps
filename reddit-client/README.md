@@ -7,8 +7,8 @@ This is a simple Reddit client that allows you to search for subreddits and view
 To get started, clone the repository and run the following commands:
 
 ```bash
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 ## Features
