@@ -8,7 +8,7 @@ To get started, clone the repository and run the following commands:
 
 ```bash
 pnpm install
-pnpm start
+pnpm dev
 ```
 
 ## Features
