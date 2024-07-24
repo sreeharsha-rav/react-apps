@@ -49,30 +49,31 @@ export async function getPosts({subreddit}: {subreddit: string}): Promise<Subred
             }
         });
         const data: SubredditPostResponse = await response.json();
+        
+        // Convert the data to a JSON object and return only 5 posts
+        const posts: SubredditPost[] = data.data.children.map(child => {
+            const post = child.data;
+            return {
+                title: post.title,
+                author: post.author,
+                subreddit: post.subreddit,
+                score: post.score,
+                ups: post.ups,
+                downs: post.downs,
+                num_comments: post.num_comments,
+                created_utc: post.created_utc,
+                selftext: post.selftext,
+                url: post.url,
+                permalink: post.permalink
+            };
+        });
 
-        // Convert the data to a JSON object and return it
-    const posts: SubredditPost[] = data.data.children.map(child => {
-        const post = child.data;
-        return {
-            title: post.title,
-            author: post.author,
-            subreddit: post.subreddit,
-            score: post.score,
-            ups: post.ups,
-            downs: post.downs,
-            num_comments: post.num_comments,
-            created_utc: post.created_utc,
-            selftext: post.selftext,
-            url: post.url,
-            permalink: post.permalink
-        };
-    });
 
-    return posts;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+        return posts;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }
 
 // Get new posts from the API
